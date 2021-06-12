@@ -15,6 +15,7 @@
 package lambdacomponents
 
 import (
+	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awsxrayexporter"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/consumer/consumererror"
 	"go.opentelemetry.io/collector/exporter/loggingexporter"
@@ -34,6 +35,7 @@ func Components() (component.Factories, error) {
 	}
 
 	exporters, err := component.MakeExporterFactoryMap(
+		awsxrayexporter.NewFactory(),
 		loggingexporter.NewFactory(),
 		otlpexporter.NewFactory(),
 		otlphttpexporter.NewFactory(),

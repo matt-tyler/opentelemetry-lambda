@@ -16,12 +16,13 @@ package main
 
 import (
 	"fmt"
-	"go.opentelemetry.io/collector/component"
-	"go.opentelemetry.io/collector/service"
-	"go.opentelemetry.io/collector/service/parserprovider"
 	"io"
 	"log"
 	"os"
+
+	"go.opentelemetry.io/collector/component"
+	"go.opentelemetry.io/collector/service"
+	"go.opentelemetry.io/collector/service/parserprovider"
 )
 
 var (
@@ -67,11 +68,11 @@ func NewCollector(factories component.Factories) *Collector {
 }
 
 func (c *Collector) Start() error {
-	params := service.Parameters{
+	params := service.AppSettings{
 		BuildInfo: component.BuildInfo{
-			Command:  "otelcol",
+			Command:     "otelcol",
 			Description: "Lambda Collector",
-			Version:  Version,
+			Version:     Version,
 		},
 		ParserProvider: c.parserProvider,
 		Factories:      c.factories,
